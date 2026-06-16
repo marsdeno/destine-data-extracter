@@ -7,7 +7,7 @@ name = "destine-downloader"
 version = "0.1.0"
 description = "Regional downloader for Destination Earth Climate DT datasets"
 authors = [
-    {name = "Your Name"}
+    {name = "Olivier Marsden"}
 ]
 requires-python = ">=3.11"
 

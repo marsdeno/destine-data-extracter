@@ -11,6 +11,12 @@ surface = ClimateDataset(
     cfg.datasets.surface.url
 )
 
-surface.open()
+ds = surface.open()
 
-surface.summary()
+print(ds)
+
+print("\nCoordinates")
+print(ds.coords)
+
+print("\nVariables")
+print(list(ds.data_vars))

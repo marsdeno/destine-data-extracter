@@ -1,9 +1,3 @@
-"""
-dataset.py
-
-Open a Generation 2 Climate DT Zarr dataset.
-"""
-
 from __future__ import annotations
 
 import logging
@@ -21,7 +15,7 @@ class ClimateDataset:
         self._ds = None
 
     @property
-    def ds(self) -> xr.Dataset:
+    def ds(self):
 
         if self._ds is None:
             self.open()
@@ -30,7 +24,7 @@ class ClimateDataset:
 
     def open(self):
 
-        logger.info("Opening dataset")
+        logger.info("Opening")
 
         logger.info(self.url)
 
@@ -38,7 +32,7 @@ class ClimateDataset:
             self.url,
             engine="zarr",
             zarr_format=3,
-            chunks="auto",
+            chunks={},
             storage_options={
                 "client_kwargs": {
                     "trust_env": True,
@@ -46,46 +40,6 @@ class ClimateDataset:
             },
         )
 
-        logger.info("Dataset opened")
+        logger.info("Opened successfully")
 
         return self._ds
-
-    @property
-    def variables(self):
-
-        return sorted(self.ds.data_vars)
-
-    @property
-    def coordinates(self):
-
-        return sorted(self.ds.coords)
-
-    def summary(self):
-
-        print()
-
-        print("=" * 60)
-
-        print("Variables")
-
-        print("-" * 60)
-
-        for variable in self.variables:
-
-            print(variable)
-
-        print()
-
-        print("=" * 60)
-
-        print("Coordinates")
-
-        print("-" * 60)
-
-        for coordinate in self.coordinates:
-
-            print(coordinate)
-
-        print()
-
-        print(self.ds)

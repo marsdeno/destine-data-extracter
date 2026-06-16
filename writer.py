@@ -2,7 +2,6 @@ from pathlib import Path
 
 from dask.diagnostics import ProgressBar
 
-
 def write_netcdf(
     ds,
     filename,
