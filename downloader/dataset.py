@@ -1,3 +1,7 @@
+"""
+Open Destination Earth Climate DT datasets.
+"""
+
 from __future__ import annotations
 
 import logging
@@ -7,39 +11,35 @@ import xarray as xr
 logger = logging.getLogger(__name__)
 
 
-class ClimateDataset:
+def open_dataset(url: str) -> xr.Dataset:
+    """
+    Open a remote Zarr dataset.
 
-    def __init__(self, url: str):
+    Parameters
+    ----------
+    url
+        URL of the remote Zarr store.
 
-        self.url = url
-        self._ds = None
+    Returns
+    -------
+    xarray.Dataset
+    """
 
-    @property
-    def ds(self):
+    logger.info("Opening dataset")
+    logger.info(url)
 
-        if self._ds is None:
-            self.open()
+    ds = xr.open_dataset(
+        url,
+        engine="zarr",
+        zarr_format=3,
+        chunks={},               # Preserve native chunking
+        storage_options={
+            "client_kwargs": {
+                "trust_env": True,
+            }
+        },
+    )
 
-        return self._ds
+    logger.info("Dataset opened successfully")
 
-    def open(self):
-
-        logger.info("Opening")
-
-        logger.info(self.url)
-
-        self._ds = xr.open_dataset(
-            self.url,
-            engine="zarr",
-            zarr_format=3,
-            chunks={},
-            storage_options={
-                "client_kwargs": {
-                    "trust_env": True,
-                }
-            },
-        )
-
-        logger.info("Opened successfully")
-
-        return self._ds
+    return ds
