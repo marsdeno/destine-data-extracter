@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "destine-downloader"
+version = "0.1.0"
+description = "Regional downloader for Destination Earth Climate DT datasets"
+authors = [
+    {name = "Your Name"}
+]
+requires-python = ">=3.11"
+
+dependencies = [
+    "aiohttp>=3.11",
+    "dask[array]>=2025.1",
+    "fsspec>=2025.2",
+    "netCDF4>=1.7",
+    "numpy>=2.0",
+    "pydantic>=2.10",
+    "PyYAML>=6.0",
+    "rich>=13",
+    "xarray>=2025.1",
+    "zarr>=3.0",
+]
+
+[project.scripts]
+destine-download = "downloader.cli:main"

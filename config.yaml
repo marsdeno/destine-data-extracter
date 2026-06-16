@@ -1,0 +1,33 @@
+version: 1
+
+datasets:
+  surface:
+    url: "https://api.earthdatahub.destine.eu/climate-dt-2/IFS-NEMO-SSP3-7.0-sfc-hourly-standard-v0.zarr"
+
+  pressure:
+    url: "https://api.earthdatahub.destine.eu/climate-dt-2/IFS-NEMO-SSP3-7.0-pl-hourly-standard-v0.zarr"
+
+bbox:
+  west: -5.0
+  east: 9.0
+  south: 41.0
+  north: 51.0
+
+years:
+  start: 2035
+  end: 2035
+
+surface:
+  - t2m
+
+pressure:
+  variables:
+    - t
+    - r
+
+  levels:
+    - 850
+    - 700
+    - 500
+
+output: output
