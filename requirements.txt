@@ -1,0 +1,9 @@
+aiohttp>=3.9
+dask[array]>=2024.5
+fsspec>=2024.5
+netCDF4>=1.6
+numpy>=1.26
+pydantic>=2.6
+PyYAML>=6.0
+xarray>=2024.5
+zarr>=3.0

@@ -1,33 +1,43 @@
-version: 1
+# DestinE Climate DT Downloader configuration
 
 datasets:
+
   surface:
-    url: "https://api.earthdatahub.destine.eu/climate-dt-2/IFS-NEMO-SSP3-7.0-sfc-hourly-standard-v0.zarr"
+    url: https://api.earthdatahub.destine.eu/climate-dt-2/IFS-NEMO-SSP3-7.0-sfc-hourly-standard-v0.zarr
 
   pressure:
-    url: "https://api.earthdatahub.destine.eu/climate-dt-2/IFS-NEMO-SSP3-7.0-pl-hourly-standard-v0.zarr"
+    url: https://api.earthdatahub.destine.eu/era5/reanalysis-era5-pressure-levels-v0.zarr
+
 
 bbox:
-  west: -5.0
-  east: 9.0
-  south: 41.0
-  north: 51.0
+  west: -8.0
+  east: 2.0
+  south: 49.0
+  north: 61.0
 
 years:
   start: 2035
-  end: 2035
+  end: 2036
+  #  start: 2020
+  #  end: 2021
 
 surface:
-  - t2m
-
-pressure:
   variables:
-    - t
-    - r
+    - 2t
+    - 10u
+    - 10v
+    - tp
 
-  levels:
-    - 850
-    - 700
-    - 500
+#pressure:
+#  variables:
+#    - temperature
+#  levels:
+#    - 850
+#    - 500
+#    - 200
 
 output: output
+
+download:
+  retries: 3
+  retry_delay: 10
